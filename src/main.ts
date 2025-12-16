@@ -61,13 +61,58 @@ type Dipendente = {
   contratto: "indeterminato" | "determinato" | "freelance";
 };
 
-
-const dipendente = {
-  nome: "Mario",
-  cognome:"Rossi",
-  annoNascita: 1990,
-  sesso: "m",
-  annidiServizio:[2010,2020],
-  emailAziendale: "mariorossi@gmail.com",
-  contratto: "indeterminato"
+type Developer = Dipendente & {
+  livelloEsperienza: "Junior" | "Mid" | "Senior",
+  linguaggi?: string[]
+  certificazioni: string[]
 }
+
+type ProjectManager = Dipendente & {
+  teamSize: number | null,
+  budget?: number,
+  collaboratori: string[]
+}
+
+type Team = {
+nome: string,
+progettoAttuale: string | null,
+budget: number,
+membri: [ProjectManager,Developer, ...Developer[]]
+}
+
+
+const team: Team = {
+  nome: "Team Alpha",
+  progettoAttuale: "Nuovo gestionale",
+  budget: 50000,
+  membri: [
+    {
+      nome: "Luca",
+      cognome: "Bianchi",
+      annoNascita: 1980,
+      sesso: "m",
+      anniDiServizio: [2010, 2012, 2015],
+      emailAziendale: "luca.bianchi@azienda.com",
+      contratto: "indeterminato",
+      teamSize: 5,
+      budget: 20000,
+      collaboratori: ["Marco", "Giulia"]
+    },
+    {
+      nome: "Marco",
+      cognome: "Verdi",
+      annoNascita: 1992,
+      sesso: "m",
+      anniDiServizio: [2018, 2019],
+      emailAziendale: "marco.verdi@azienda.com",
+      contratto: "determinato",
+      livelloEsperienza: "Mid",
+      certificazioni: ["AWS"],
+      linguaggi: ["TypeScript", "JavaScript"]
+    }
+  ]
+};
+
+console.log(team);
+
+
